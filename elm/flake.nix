@@ -16,6 +16,7 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             elmPkgs.elm
+            elmPkgs.elm-language-server
           ];
         };
       });
