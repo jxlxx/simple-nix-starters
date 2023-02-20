@@ -1,0 +1,43 @@
+{
+    "family": "<TASK-DEFINITION-NAME>",
+    "containerDefinitions": [
+        {
+        "name": "<CONTAINER-NAME>",
+        "image": "<AWS_PROJECT_ID>.dkr.ecr.us-east-2.amazonaws.com/<CONTAINER-NAME>:latest",
+        "cpu": 0,
+        "portMappings": [
+            {
+            "name": "<CONTAINER-NAME>-8090-tcp",
+            "containerPort": 8090,
+            "hostPort": 8090,
+            "protocol": "tcp",
+            "appProtocol": "http"
+            }
+        ],
+        "essential": true,
+        "environment": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+            "awslogs-create-group": "true",
+            "awslogs-group": "/ecs/<TASK-DEFINITION-NAME>",
+            "awslogs-region": "us-east-2",
+            "awslogs-stream-prefix": "ecs"
+            }
+        }
+    }
+    ],
+    "executionRoleArn": "arn:aws:iam::<AWS_PROJECT_ID>:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+    "cpuArchitecture": "X86_64",
+    "operatingSystemFamily": "LINUX"
+    }
+}
